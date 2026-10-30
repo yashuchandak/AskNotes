@@ -1,0 +1,12 @@
+{
+  "name": "asknotes",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node server.mjs"
+  },
+  "dependencies": {
+    "google-auth-library": "^11.3.2"
+  }
+}

@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f8f8f6" />
+    <meta name="description" content="AskNotes keeps your notes and AI notes together." />
+    <meta name="apple-mobile-web-app-title" content="AskNotes" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/qnotes-icon-192.png" />
+    <link rel="apple-touch-icon" href="/qnotes-icon-180.png" />
+    <title>AskNotes — notes worth keeping</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to your board</a>
+    <main class="auth-screen" id="auth-screen" aria-labelledby="auth-title">
+      <section class="auth-card">
+        <a class="brand auth-brand" href="/" aria-label="AskNotes home">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 32 32" fill="none"><path d="M16 3.5 18.9 13l9.6 3-9.6 3L16 28.5 13.1 19 3.5 16l9.6-3L16 3.5Z" fill="currentColor"/><circle cx="25.3" cy="6.7" r="2" fill="#C9B8FF"/></svg>
+          </span>
+          <span class="brand-name">AskNotes<span class="brand-period">.</span></span>
+        </a>
+        <div class="auth-eyebrow"><span class="eyebrow-dot"></span> YOUR NOTES, ALL IN ONE PLACE</div>
+        <h1 id="auth-title">Welcome back<span class="heading-period">.</span></h1>
+        <p class="auth-copy">Sign in with Google to keep your notes and AI notes saved to your account.</p>
+        <div id="g_id_onload" data-client_id="__GOOGLE_CLIENT_ID__" data-login_uri="__GOOGLE_LOGIN_URI__" data-auto_prompt="false"></div>
+        <div class="google-button-wrap"><div class="g_id_signin" data-type="standard" data-shape="rectangular" data-theme="outline" data-text="signin_with" data-size="large" data-logo_alignment="left" data-width="260"></div></div>
+        <p class="auth-message" id="auth-message" role="status" aria-live="polite"></p>
+        <p class="auth-privacy">AskNotes uses Google sign-in to keep your library private to your account.</p>
+      </section>
+    </main>
+
+    <div class="app-shell" id="app-shell" hidden>
+      <aside class="sidebar" aria-label="Main navigation">
+        <a class="brand" href="/" aria-label="AskNotes home">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 32 32" fill="none"><path d="M16 3.5 18.9 13l9.6 3-9.6 3L16 28.5 13.1 19 3.5 16l9.6-3L16 3.5Z" fill="currentColor"/><circle cx="25.3" cy="6.7" r="2" fill="#C9B8FF"/></svg>
+          </span>
+          <span class="brand-name">AskNotes<span class="brand-period">.</span></span>
+        </a>
+        <div class="nav-group-label">YOUR LIBRARY</div>
+        <nav class="primary-nav sidebar-library-nav" aria-label="Your library">
+          <button class="nav-link active" type="button" data-view="all">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></svg>
+            <span>All items</span><span class="nav-count" id="all-count">0</span>
+          </button>
+          <button class="nav-link" type="button" data-view="notes">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3.8h8l4 4V20H7a2 2 0 0 1-2-2V5.8a2 2 0 0 1 2-2Z"/><path d="M14.5 4v4h4M8.5 12h7M8.5 15.5h7"/></svg>
+            <span>My notes</span><span class="nav-count" id="notes-count">0</span>
+          </button>
+          <button class="nav-link" type="button" data-view="answers">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5h-6l-4.5 4v-4.2A2.5 2.5 0 0 1 4 13.5v-8Z"/><path d="M8 8h8M8 11.5h5"/></svg>
+            <span>AI notes</span><span class="nav-count" id="answers-count">0</span>
+          </button>
+          <button class="nav-link" type="button" data-view="starred">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 2.7 5.5 6.1.9-4.4 4.3 1 6.1-5.4-2.9-5.4 2.9 1-6.1-4.4-4.3 6.1-.9L12 3Z"/></svg>
+            <span>Starred</span><span class="nav-count" id="star-count">0</span>
+          </button>
+          <button class="nav-link" type="button" data-view="deleted">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M9 7V4h6v3m-9 0 1 13h10l1-13M10 11v5m4-5v5"/></svg>
+            <span>Deleted</span><span class="nav-count" id="deleted-count">0</span>
+          </button>
+        </nav>
+      </aside>
+
+      <main class="main-area" id="main">
+        <header class="topbar">
+          <div class="breadcrumb"><span>AskNotes</span><span class="breadcrumb-slash">/</span><strong>My library</strong></div>
+          <div class="topbar-right">
+            <div class="theme-picker-wrap">
+            <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Choose color theme" title="Choose color theme" aria-expanded="false" aria-controls="theme-menu">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9c0-1.1-.9-2-2-2h-1.5a1.5 1.5 0 0 1-1.1-2.5A2 2 0 0 0 15 4h-3Z"/><circle cx="7.5" cy="11" r="1"/><circle cx="10" cy="7.5" r="1"/><circle cx="14" cy="7.5" r="1"/></svg>
+            </button>
+            <div class="theme-menu" id="theme-menu" role="group" aria-label="Color themes" hidden>
+              <span class="theme-menu-title">Choose a theme</span>
+              <button type="button" class="theme-option" data-theme-choice="lavender"><i></i> Lavender</button>
+              <button type="button" class="theme-option" data-theme-choice="ocean"><i></i> Ocean</button>
+              <button type="button" class="theme-option" data-theme-choice="forest"><i></i> Forest</button>
+              <button type="button" class="theme-option" data-theme-choice="sky"><i></i> Sky</button>
+              <button type="button" class="theme-option" data-theme-choice="sand"><i></i> Sand</button>
+              <button type="button" class="theme-option" data-theme-choice="graphite"><i></i> Graphite</button>
+              <button type="button" class="theme-option" data-theme-choice="deep-ocean"><i></i> Deep ocean</button>
+              <button type="button" class="theme-option" data-theme-choice="night-garden"><i></i> Night garden</button>
+            </div>
+            </div>
+            <div class="account-control">
+              <span class="account-name" id="account-name"></span>
+              <button type="button" class="signout-button" id="sign-out">Sign out</button>
+            </div>
+          </div>
+        </header>
+
+        <div class="page-content">
+          <div class="top-layout">
+            <section class="ask-panel" id="composer" aria-label="Create a note or an AI note">
+              <div class="composer-heading">
+                <div class="ask-panel-top"><span class="ask-orb" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m12 2 2.3 7.7L22 12l-7.7 2.3L12 22l-2.3-7.7L2 12l7.7-2.3L12 2Z"/></svg></span><div><span>Add both fields for a note, or use just the title to create an AI note.</span></div></div>
+              </div>
+              <form id="ask-form">
+                <label class="sr-only" for="note-title-input">Title</label>
+                <label class="sr-only" for="question-input">Note</label>
+                <div class="title-entry-row">
+                  <input class="note-title-input" id="note-title-input" type="text" maxlength="500" placeholder="Title" autocomplete="off" />
+                  <button class="ask-button composer-action-button title-ai-button" id="create-ai-button" type="submit" value="ai">Create AI Note</button>
+                </div>
+                <textarea id="question-input" maxlength="5000" rows="3" placeholder="Note"></textarea>
+                <div class="ask-form-bottom">
+                  <div class="ask-hints"><span id="character-count">0 / 5,000</span></div>
+                  <div class="create-actions">
+                    <button class="ask-button composer-action-button" id="save-note-button" type="submit" value="note">Save Note</button>
+                  </div>
+                </div>
+              </form>
+            </section>
+            <section class="welcome-row" aria-labelledby="welcome-title">
+              <div>
+              <div class="eyebrow"><span class="eyebrow-dot"></span> WRITE OR EXPLORE</div>
+              <h1 id="welcome-title">Keep a thought. <span class="heading-soft">Follow an idea.</span></h1>
+              <p class="welcome-copy">Save a note in your words, or turn a title into an AI note.</p>
+            </div></section>
+          </div>
+
+          <div class="suggestions" id="suggestions" aria-label="Ideas to explore">
+            <span class="suggestions-label">SPARK IDEAS</span>
+            <button type="button" class="suggestion-chip" data-question="2008 economic crisis">2008 economic crisis</button>
+            <button type="button" class="suggestion-chip" data-question="The God particle">The God particle</button>
+            <button type="button" class="suggestion-chip" data-question="How do black holes form?">How do black holes form?</button>
+          </div>
+
+          <section class="board-section" aria-labelledby="board-title">
+            <div class="board-heading-row">
+              <div><div class="section-kicker">YOUR LITTLE LIBRARY</div><h2 id="board-title">All items <span id="board-title-count">0</span></h2></div>
+              <div class="board-controls"><span class="saved-label"><span class="saved-check" aria-hidden="true">✓</span> <span id="saved-label-count">0 items saved</span></span><button type="button" class="sort-button" id="sort-button"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 6h10M7 10h8m-6 4h6"/></svg><span id="sort-label">Newest first</span><svg class="sort-chevron" viewBox="0 0 20 20" aria-hidden="true"><path d="m6 8 4 4 4-4"/></svg></button></div>
+            </div>
+            <div class="board-search-row">
+              <label class="global-search" for="search-input">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.3"/><path d="m15.5 15.5 4.3 4.3"/></svg>
+                <input id="search-input" type="search" placeholder="Search notes" autocomplete="off" />
+                <kbd>/</kbd>
+              </label>
+            </div>
+            <div class="board-grid" id="board-grid" aria-live="polite" aria-busy="false"></div>
+            <div class="empty-state" id="empty-state" hidden>
+              <div class="empty-illustration" aria-hidden="true"><span class="empty-sun">✳</span><span class="empty-card empty-card-back"></span><span class="empty-card empty-card-front"><i></i><i></i><i></i></span></div>
+              <h3 id="empty-title">A fresh page, full of possibility.</h3>
+              <p id="empty-copy">Write a note or use AI to explore a topic. Your first card will be waiting here when you come back.</p>
+              <button type="button" class="empty-ask" id="empty-ask">Write your first note <span aria-hidden="true">↑</span></button>
+            </div>
+          </section>
+          <footer class="page-footer"><span>A quiet place for things worth keeping.</span><span>Notes and AI notes, saved for later <span aria-hidden="true">✳</span></span></footer>
+        </div>
+      </main>
+    </div>
+    <dialog class="note-editor" id="note-editor" aria-labelledby="note-editor-title">
+      <form id="note-editor-form">
+        <div class="note-editor-heading"><div><span class="section-kicker">YOUR LIBRARY</span><h2 id="note-editor-title">Edit note</h2></div><button class="icon-button" type="button" id="close-note-editor" aria-label="Close note editor">×</button></div>
+        <input id="edit-note-title" type="text" maxlength="120" placeholder="Title" />
+        <div class="editor-field" id="edit-question-field" hidden>
+          <label for="edit-note-question">Prompt or topic</label>
+          <textarea id="edit-note-question" maxlength="500" rows="2" placeholder="Prompt or topic"></textarea>
+        </div>
+        <div class="editor-field">
+          <label for="edit-note-body" id="edit-note-body-label">Note text</label>
+          <textarea id="edit-note-body" maxlength="5000" rows="8" required placeholder="Write your note…"></textarea>
+        </div>
+        <div class="note-editor-actions"><button type="button" class="editor-cancel" id="cancel-note-edit">Cancel</button><button type="submit" class="ask-button">Save changes</button></div>
+      </form>
+    </dialog>
+    <dialog class="note-reader" id="card-reader" aria-labelledby="card-reader-title">
+      <div class="note-reader-heading">
+        <h2 id="card-reader-title">Full note</h2>
+        <div class="note-reader-tools" id="reader-actions" role="group" aria-label="Note actions"></div>
+        <button class="icon-button" type="button" id="close-card-reader" aria-label="Close full note">×</button>
+      </div>
+      <div class="note-reader-content" id="card-reader-content"></div>
+    </dialog>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>
